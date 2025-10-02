@@ -9,14 +9,16 @@ function capitalizedPokemonName(str){
 async function getPokemonType(id){
   try {
     const parts = POKE_API.split('/');
-    parts[parts.length - 1] = 'move'; // Replace last element
+    parts[parts.length - 1] = 'move';
     const movesUrl = parts.join('/') + `/${id}`;
 
     const response = await fetch(movesUrl, {
       signal: AbortSignal.timeout(5000)
     });
     const result = await response.json()
-    return result?.type?.name || "Unknown";
+    const pokemonType = result?.type?.name || "Unknown";
+
+    return pokemonType;
   } catch(error){
     if(error.name === "SyntaxError"){
       return "Unknown type!";
