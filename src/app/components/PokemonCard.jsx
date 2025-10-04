@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-// ALTERNATIVE: Using a custom hook (more advanced)
+
 function usePokemon() {
   const [pokemon, setPokemon] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -26,7 +26,6 @@ function usePokemon() {
   return { pokemon, loading, error };
 }
 
-
 function PokemonCard() {
   const { pokemon, loading, error } = usePokemon();
 
@@ -36,14 +35,18 @@ function PokemonCard() {
 
   return (
     <>
-      <div className="border border-indigo-600">
-        <div className="flex flex-row justify-between">
-          <h1>{pokemon.name}</h1>
+      <div className="border border-black p-2">
+        <div>
+          <div className="flex flex-row justify-between">
+            <h1 className="text-[48px]">{pokemon.name}</h1>
+            <h1 className="text-[48px]">{pokemon.id}</h1>
+          </div>
+          <div className="flex flex-row justify-center">
+            <img className="w-[30%]" src={pokemon.sprites.front_default}/>
+          </div>
           <p>{pokemon.type}</p>
-          <h1>{pokemon.id}</h1>
         </div>
-        <img src={pokemon.sprites.front_default}/>
-        <img src={pokemon.sprites.back_default}/>
+
       </div>
     </>
   );

@@ -1,7 +1,10 @@
 "use client";
 
 import Image from "next/image"
+import Link from "next/link";
 import { MultiSelectDropdown } from "./ui/Dropdown";
+import { SearchBar } from "./ui/SearchBar";
+
 
 function Header(){
     return (
@@ -11,6 +14,8 @@ function Header(){
             width={100}
             height={100}
             alt="pokemon-logo"/>
+        <MultiSelectDropdown></MultiSelectDropdown>
+        <SearchBar/>
     </header>
     )
 }
