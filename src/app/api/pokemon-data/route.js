@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 
 const POKE_API = process.env.POKE_API;
+const MAX_GENERATED_NUMBER = 1010;
 
 function capitalizedPokemonName(str){
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -32,7 +33,7 @@ export async function GET(){
       return NextResponse.json({message: "Environment variables unavailable or set incorrectly"}, {status: 500});  
     }
     
-    const randomID = Math.floor(Math.random() * 1010) + 1;
+    const randomID = Math.floor(Math.random() * MAX_GENERATED_NUMBER) + 1;
     
     const randomPokemonURL = `${POKE_API}/${randomID}`;
  
@@ -55,7 +56,11 @@ export async function GET(){
         front_default: result?.sprites.front_default || null,
         back_default: result?.sprites.back_default || null
       },
-      type: await getPokemonType(randomID) || "Unknown"
+      type: await getPokemonType(randomID) || "Unknown",
+      stats: result.stats.map((stat) => ({
+        name: stat?.stat?.name || "Unknown",
+        base_stat:stat?.base_stat || null
+      }))
     };
 
     return NextResponse.json(displayedData);

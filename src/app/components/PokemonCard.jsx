@@ -38,19 +38,22 @@ function PokemonCard() {
       <div className="border border-black p-2">
         <div>
           <div className="flex flex-row justify-between">
-            <h1 className="text-[48px]">{pokemon.name}</h1>
-            <h1 className="text-[48px]">{pokemon.id}</h1>
+            <h1 className="text-[36px]">{pokemon.name}</h1>
+            <h1 className="text-[36px]">{pokemon.id}</h1>
           </div>
           <div className="flex flex-row justify-center">
             <img className="w-[30%]" src={pokemon.sprites.front_default}/>
           </div>
           <p>{pokemon.type}</p>
+          <div className="grid grid-cols-3">
+          </div>
         </div>
-
       </div>
     </>
   );
 }
+
+
 
 export default function PokemonGrids() {
   return (
