@@ -4,26 +4,6 @@ import { capitalizeWords } from "@/app/lib/utils";
 const POKE_API = process.env.POKE_API;
 const MAX_GENERATED_NUMBER = 1010;
 
-async function getPokemonType(id){
-  try {
-    const parts = POKE_API.split('/');
-    parts[parts.length - 1] = 'move';
-    const movesUrl = parts.join('/') + `/${id}`;
-
-    const response = await fetch(movesUrl, {
-      signal: AbortSignal.timeout(5000)
-    });
-    const result = await response.json()
-    const pokemonType = result?.type?.name || "Unknown";
-
-    return pokemonType;
-  } catch(error){
-    if(error.name === "SyntaxError"){
-      return "Unknown type!";
-    };
-  }
-};
-
 export async function GET(){
   try {
     if (!POKE_API){
@@ -32,7 +12,7 @@ export async function GET(){
     
     const randomID = Math.floor(Math.random() * MAX_GENERATED_NUMBER) + 1;
     
-    const randomPokemonURL = `${POKE_API}/${randomID}`;
+    const randomPokemonURL = `${POKE_API}/pokemon/${randomID}`;
  
     const response = await fetch(randomPokemonURL, {
       signal: AbortSignal.timeout(5000)
@@ -53,13 +33,13 @@ export async function GET(){
         front_default: result?.sprites.front_default || null,
         back_default: result?.sprites.back_default || null
       },
-      type: await getPokemonType(randomID) || "Unknown",
+      types: result?.types?.map(t => t.type.name) || ["Unknown"],
       stats: result?.stats || []
     };
 
+    console.log(displayedData.types)
     return NextResponse.json(displayedData);
     } catch(error) {
-      console.log(error.name);
       if(error.name === "TimeoutError"){
         return NextResponse.json({
           message: "PokeAPI is taking too long to respond!"

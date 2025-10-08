@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { capitalizeWords } from "@/app/lib/utils";
-import { Badeen_Display } from "next/font/google";
  
 // const badgeIcons = {
 //     dark: <Image src="/512px-Dark.png" alt="dark-type" width={20} height={20}></Image>,
@@ -32,19 +31,25 @@ const badgeIcons = {
 }
 
 export function Badge(props){ 
-    const badges = badgeIcons[props.badge]
-    if (!badges){
-        return <p>Unknown</p>
+    const badgeIcon = badgeIcons[props.badge];
+    
+    if (!badgeIcon){
+        return (
+            <div className="px-2 py-1 bg-gray-400 rounded text-white text-xs">
+                {capitalizeWords(props.badge)}
+            </div>
+        );
     }
 
     return(
-        <div>
+        <div className="flex items-center gap-1">
             <Image 
-                src={badgeIcons[props.badge]}
-                alt= {capitalizeWords(props.badge + `-type`)}
+                src={badgeIcon}
+                alt={capitalizeWords(props.badge + `-type`)}
                 width={20}
                 height={20}
             />
+            <span className="text-xs">{capitalizeWords(props.badge)}</span>
         </div>
     )
 }

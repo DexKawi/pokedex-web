@@ -35,6 +35,9 @@ function PokemonCard() {
   if (error) return <p>Error: {error}</p>;
   if (!pokemon) return <p>No data</p>;
 
+  console.log("Pokemon data:", pokemon); 
+  console.log("Types:", pokemon?.types); 
+
   return (
     <>
       <div className="outline-1 outline-amber-300 p-1 rounded-[15px]">
@@ -46,8 +49,15 @@ function PokemonCard() {
           <div className="flex flex-row justify-center">
             <img className="w-[30%]" src={pokemon.sprites.front_default}/>
           </div>
-          <Badge badge={pokemon.type}></Badge>
-          <p>{pokemon.type}</p>
+          <div>
+          <Badge badge={pokemon.types.type}></Badge>
+          {/* {pokemon.types.map((type, index) => {
+            <div key={index}>
+            <Badge badge={type}/>
+            <p>{type}</p>
+            </div>
+          })} */}
+          </div>
           <div className="grid grid-cols-3 gap-2 place-content-center">
             {pokemon.stats.map((stat, index) => (
             <div key={index}>
