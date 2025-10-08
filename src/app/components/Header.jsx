@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image"
-import Link from "next/link";
 import { MultiSelectDropdown } from "./ui/Dropdown";
 import { SearchBar } from "./ui/SearchBar";
 

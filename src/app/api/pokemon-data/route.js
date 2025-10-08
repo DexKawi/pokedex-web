@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
+import { capitalizeWords } from "@/app/lib/utils";
 
 const POKE_API = process.env.POKE_API;
 const MAX_GENERATED_NUMBER = 1010;
-
-function capitalizedPokemonName(str){
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
 
 async function getPokemonType(id){
   try {
@@ -49,7 +46,7 @@ export async function GET(){
     const result = await response.json();
     const displayedData = {
       id: result?.id || null,
-      name: capitalizedPokemonName(result?.name) || "Unknown",
+      name: capitalizeWords(result?.name) || "Unknown",
       height: result?.height || 0,
       species: result?.species?.name || result?.species || "Unknown",
       sprites: {
@@ -57,10 +54,7 @@ export async function GET(){
         back_default: result?.sprites.back_default || null
       },
       type: await getPokemonType(randomID) || "Unknown",
-      stats: result.stats.map((stat) => ({
-        name: stat?.stat?.name || "Unknown",
-        base_stat:stat?.base_stat || null
-      }))
+      stats: result?.stats || []
     };
 
     return NextResponse.json(displayedData);

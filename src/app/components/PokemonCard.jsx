@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { uppercaseWords } from "../lib/utils";
+import { Badge } from "./ui/Badge";
 
 function usePokemon() {
   const [pokemon, setPokemon] = useState(null);
@@ -35,25 +37,30 @@ function PokemonCard() {
 
   return (
     <>
-      <div className="border border-black p-2">
-        <div>
-          <div className="flex flex-row justify-between">
+      <div className="outline-1 outline-amber-300 p-1 rounded-[15px]">
+        <div className="bg-[#bfbfbf] p-4 rounded-[10px]">
+          <div className="flex flex-row justify-between items-center">
             <h1 className="text-[36px]">{pokemon.name}</h1>
-            <h1 className="text-[36px]">{pokemon.id}</h1>
+            <h1 className="text-[16px]">#{pokemon.id}</h1>
           </div>
           <div className="flex flex-row justify-center">
             <img className="w-[30%]" src={pokemon.sprites.front_default}/>
           </div>
+          <Badge badge={pokemon.type}></Badge>
           <p>{pokemon.type}</p>
-          <div className="grid grid-cols-3">
+          <div className="grid grid-cols-3 gap-2 place-content-center">
+            {pokemon.stats.map((stat, index) => (
+            <div key={index}>
+              <p className="text-[8px]">{uppercaseWords(stat.stat.name)}</p>
+              <p>{stat.base_stat}</p>
+            </div>
+            ))}
           </div>
         </div>
       </div>
     </>
   );
 }
-
-
 
 export default function PokemonGrids() {
   return (
