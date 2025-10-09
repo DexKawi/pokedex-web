@@ -40,8 +40,8 @@ function PokemonCard() {
 
   return (
     <>
-      <div className="outline-1 outline-amber-300 p-1 rounded-[15px]">
-        <div className="bg-[#bfbfbf] p-4 rounded-[10px]">
+      <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px]">
+        <div className="bg-[#ffffff] p-4 rounded-[10px]">
           <div className="flex flex-row justify-between items-center">
             <h1 className="text-[36px]">{pokemon.name}</h1>
             <h1 className="text-[16px]">#{pokemon.id}</h1>
@@ -49,14 +49,10 @@ function PokemonCard() {
           <div className="flex flex-row justify-center">
             <img className="w-[30%]" src={pokemon.sprites.front_default}/>
           </div>
-          <div>
-          <Badge badge={pokemon.types.type}></Badge>
-          {/* {pokemon.types.map((type, index) => {
-            <div key={index}>
-            <Badge badge={type}/>
-            <p>{type}</p>
-            </div>
-          })} */}
+          <div className="flex gap-4 mb-3 justify-center">
+            {pokemon.types.map((type, index) => (
+              <Badge key={index} badge={type} />
+            ))}
           </div>
           <div className="grid grid-cols-3 gap-2 place-content-center">
             {pokemon.stats.map((stat, index) => (

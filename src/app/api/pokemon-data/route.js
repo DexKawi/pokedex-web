@@ -33,7 +33,7 @@ export async function GET(){
         front_default: result?.sprites.front_default || null,
         back_default: result?.sprites.back_default || null
       },
-      types: result?.types?.map(t => t.type.name) || ["Unknown"],
+      types: result?.types?.map(t => t.type.name) || [],
       stats: result?.stats || []
     };
 

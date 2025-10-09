@@ -2,19 +2,6 @@
 import Image from "next/image";
 import { capitalizeWords } from "@/app/lib/utils";
  
-// const badgeIcons = {
-//     dark: <Image src="/512px-Dark.png" alt="dark-type" width={20} height={20}></Image>,
-//     electric: <Image src="/512px-Electric.png" alt="electric-type" width={20} height={20}></Image>,
-//     fairy: <Image src="/512px-Fairy.png" alt="fairy-type" width={20} height={20}></Image>,
-//     fighting: <Image src="/512px-Fighting.png" alt="fighting-type" width={20} height={20}></Image>,
-//     ice: <Image src="/512px-Ice.png" alt="ice-type" width={20} height={20}></Image>,
-//     normal: <Image src="/512px-Normal.png" alt="normal-type" width={20} height={20}></Image>,
-//     poison: <Image src="/512px-Poison.png" alt="poison-type" width={20} height={20}></Image>,
-//     psychic: <Image src="/512px-Psychic.png" alt="psychic-type" width={20} height={20}></Image>,
-//     rock: <Image src="/512px-Rock.png" alt="rock-type" width={20} height={20}></Image>,
-//     steel: <Image src="/512px-Steel.png" alt="steel-type" width={20} height={20}></Image>,
-//     water: <Image src="/512px-Water.png" alt="water-type" width={20} height={20}></Image>,
-// }
 
 const badgeIcons = {
     dark: "/512px-Dark.png",
@@ -28,6 +15,13 @@ const badgeIcons = {
     rock: "/512px-Rock.png" ,
     steel: "/512px-Steel.png",
     water: "/512px-Water.png",
+    grass: "/512px-Grass.png",
+    ghost: "/512px-Ghost.png",
+    flying: "/512px-Flying.png",
+    bug: "/512px-Bug.png",
+    ground: "/512px-Ground.png",
+    fire: "/512px-Fire.png",
+    dragon: "/512px-Dragon.png",
 }
 
 export function Badge(props){ 
