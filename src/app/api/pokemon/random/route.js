@@ -37,7 +37,6 @@ export async function GET(){
       stats: result?.stats || []
     };
 
-    console.log(displayedData.types)
     return NextResponse.json(displayedData);
     } catch(error) {
       if(error.name === "TimeoutError"){

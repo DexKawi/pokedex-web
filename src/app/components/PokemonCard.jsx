@@ -1,43 +1,22 @@
+// PokemonCard.jsx
+
 "use client";
 
-import { useState, useEffect } from "react";
 import { uppercaseWords } from "../lib/utils";
 import { Badge } from "./ui/Badge";
-
-function usePokemon() {
-  const [pokemon, setPokemon] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("/api/pokemon-data");
-        if (!response.ok) throw new Error('Failed to fetch');
-        const data = await response.json();
-        setPokemon(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    }
-    
-    fetchData();
-  }, []);
-  return { pokemon, loading, error };
-}
+// Import the NEW hook
+import { usePokemonDetails } from "../hooks/usePokemonDetails";
 
 function PokemonCard() {
-  const { pokemon, loading, error } = usePokemon();
+  // Use the new hook that fetches detailed data
+  const { pokemon, loading, error } = usePokemonDetails();
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!pokemon) return <p>No data</p>;
+  // Your loading/error states are perfect and will prevent crashes
+  if (loading) return <div className="p-4 bg-gray-200 rounded-lg">Loading card...</div>;
+  if (error) return <div className="p-4 bg-red-100 text-red-700 rounded-lg">Error: {error}</div>;
+  if (!pokemon) return <div className="p-4 bg-gray-200 rounded-lg">No Pokémon data found.</div>;
 
-  console.log("Pokemon data:", pokemon); 
-  console.log("Types:", pokemon?.types); 
-
+  // Now, 'pokemon' is the detailed object we need, so the rest of your code will work!
   return (
     <>
       <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px]">
@@ -47,7 +26,8 @@ function PokemonCard() {
             <h1 className="text-[16px]">#{pokemon.id}</h1>
           </div>
           <div className="flex flex-row justify-center">
-            <img className="w-[30%]" src={pokemon.sprites.front_default}/>
+            {/* Optional Chaining is a good defensive practice here */}
+            <img className="w-[30%]" src={pokemon.sprites?.front_default} alt={pokemon.name} />
           </div>
           <div className="flex gap-4 mb-3 justify-center">
             {pokemon.types.map((type, index) => (
@@ -56,10 +36,10 @@ function PokemonCard() {
           </div>
           <div className="grid grid-cols-3 gap-2 place-content-center">
             {pokemon.stats.map((stat, index) => (
-            <div key={index}>
-              <p className="text-[8px]">{uppercaseWords(stat.stat.name)}</p>
-              <p>{stat.base_stat}</p>
-            </div>
+              <div key={index}>
+                <p className="text-[8px]">{uppercaseWords(stat.stat.name)}</p>
+                <p>{stat.base_stat}</p>
+              </div>
             ))}
           </div>
         </div>
@@ -68,10 +48,12 @@ function PokemonCard() {
   );
 }
 
+// No changes needed in PokemonGrids
 export default function PokemonGrids() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {Array.from({ length: 6 }).map((_, index) => (
+      {/* This will now correctly render multiple cards, each fetching its own random pokemon */}
+      {Array.from({ length: 3 }).map((_, index) => (
         <PokemonCard key={index} />
       ))}
     </div>

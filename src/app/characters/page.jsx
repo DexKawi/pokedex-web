@@ -4,10 +4,9 @@ import PokemonGrids from '../components/PokemonCard'
 
 export default function Page(){
     return (
-        <>
+        <div className="pt-12">
             <Header/>
             <PokemonGrids/>
-
-        </>
+        </div>
     )
 }

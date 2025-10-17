@@ -8,9 +8,8 @@ export function MultiSelectDropdown() {
 
   return (
     <div className="relative inline-block text-left">
-      {/* Button */}
       <button
-        onMouseOver={() => setOpen(!open)}
+        onClick={() => setOpen(!open)}
         className="px-4 py-2 bg-blue-500 text-white rounded-lg"
       >
         {selected} ▼
