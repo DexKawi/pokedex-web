@@ -1,6 +1,7 @@
 import { Search } from "lucide-react";
 import { useState, useEffect } from "react";
 import { usePokemonList } from "@/app/hooks/usePokemonList";
+import { usePokemonDetails } from "@/app/hooks/usePokemonDetails";
 import Image from "next/image";
 import Form from "next/form";
 
@@ -9,16 +10,18 @@ export function SearchBar() {
     const [filteredPokemon, setFilteredPokemon] = useState([]);
     
     const { pokemonList: allPokemon, error, loading } = usePokemonList();
+    
 
     useEffect(() => {
         if (searchValue && allPokemon) {
             const results = allPokemon.filter(p =>
-                p.name.toLowerCase().includes(searchValue.toLowerCase())
+                 p.name.toLowerCase().includes(searchValue.toLowerCase())
             );
             setFilteredPokemon(results);
         } else {
             setFilteredPokemon([]);
         }
+        
     }, [searchValue, allPokemon]);
 
     const handleSearchSubmit = (e) => {
@@ -55,9 +58,9 @@ export function SearchBar() {
 
             {filteredPokemon.length > 0 && (
                 <ul className="absolute top-full mt-1 w-full bg-white dark:bg-gray-700 border border-gray-300 rounded-md shadow-lg z-10 max-h-60 overflow-y-auto">
-                    {filteredPokemon.map((p, index) => (
+                    {filteredPokemon.map((p) => (
                         <li
-                            key={index}
+                            key={p.name}
                             className="p-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
                             onClick={() => {
                                 // When a user clicks an item, set it as the search value and clear the dropdown
@@ -65,8 +68,6 @@ export function SearchBar() {
                                 setFilteredPokemon([]);
                             }}
                         >
-                            {/* <div><Image src={p.sprites.front_default}/></div> */}
-                            {console.log(p.sprites)}
                             {p.name}
                         </li>
                     ))}

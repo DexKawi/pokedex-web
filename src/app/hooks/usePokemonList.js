@@ -20,6 +20,6 @@ export function usePokemonList() {
     }
     fetchData();
   }, []);
-
+  console.log(pokemonList)
   return { pokemonList, loading, error };
 }
