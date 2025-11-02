@@ -14,7 +14,7 @@ const links = [{
 }];
 
 
-export function Header(){
+export function Header({ onPokemonSelect }){
     
     return (
     <header className="flex flex-row gap-4 justify-between bg-white p-4 fixed w-full top-0 left-0 z-0">
@@ -37,7 +37,7 @@ export function Header(){
             </div>
         </div>
         <div>
-            <SearchBar/>
+            <SearchBar onPokemonSelect={onPokemonSelect}/>
         </div>
     </header>
     )

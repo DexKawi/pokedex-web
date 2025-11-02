@@ -6,8 +6,8 @@ import { uppercaseWords } from "../lib/utils";
 import { Badge } from "./ui/Badge";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 
-function PokemonCard() {
-  const { pokemon, loading, error } = usePokemonDetails();
+function PokemonCard({ pokemonName }) {
+  const { pokemon, loading, error } = usePokemonDetails(pokemonName);
 
   if (loading) return <div className="p-4 bg-gray-200 rounded-lg">Loading card...</div>;
   if (error) return <div className="p-4 bg-red-100 text-red-700 rounded-lg">Error: {error}</div>;
@@ -43,12 +43,16 @@ function PokemonCard() {
   );
 }
 
-export default function PokemonGrids() {
+export default function PokemonGrids({ selectedPokemon }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {Array.from({ length: 3 }).map((_, index) => (
-        <PokemonCard key={index} />
-      ))}
+      {selectedPokemon ? (
+        <PokemonCard pokemonName={selectedPokemon} />
+      ) : (
+        Array.from({ length: 3 }).map((_, index) => (
+          <PokemonCard key={index} />
+        ))
+      )}
     </div>
   );
 }
