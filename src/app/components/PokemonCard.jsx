@@ -33,10 +33,12 @@ function PokemonCard({ pokemonName }) {
     fetchPokemon();
   }, [pokemonName]);
 
+  // Your loading/error states are perfect and will prevent crashes
   if (loading) return <div className="p-4 bg-gray-200 rounded-lg">Loading card...</div>;
   if (error) return <div className="p-4 bg-red-100 text-red-700 rounded-lg">Error: {error}</div>;
   if (!pokemon) return <div className="p-4 bg-gray-200 rounded-lg">No Pokémon data found.</div>;
 
+  // Now, 'pokemon' is the detailed object we need, so the rest of your code will work!
   return (
     <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px]">
       <div className="bg-[#ffffff] p-4 rounded-[10px]">
@@ -72,6 +74,7 @@ export default function PokemonGrids({ filteredCard }) {
     </div>
   ) : (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {/* This will now correctly render multiple cards, each fetching its own random pokemon */}
       {Array.from({ length: 3 }).map((_, index) => (
         <PokemonCard key={index} />
       ))}
