@@ -1,4 +1,3 @@
-// PokemonCard.jsx
 "use client";
 
 import { uppercaseWords } from "../lib/utils";

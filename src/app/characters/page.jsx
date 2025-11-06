@@ -29,7 +29,6 @@ export default function Page(){
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (filteredPokemon.length > 0) {
-        console.log("Searching for:", filteredPokemon[0].name);
         alert(`You searched for ${filteredPokemon[0].name}`);
         }
     };

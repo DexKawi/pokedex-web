@@ -3,8 +3,6 @@
 import Image from "next/image";
 import { SearchBar } from "./ui/SearchBar";
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePokemonList } from "@/app/hooks/usePokemonList";
 
 const links = [
   { title: "Pokemons", url: "/characters" },
@@ -21,32 +19,6 @@ export function Header({
   collapsible, 
   setCollapsible,
   setSelectedPokemon}) {
-  // const [searchValue, setSearchValue] = useState("");
-  // const [filteredPokemon, setFilteredPokemon] = useState([]);
-  // const [collapsible, setCollapsible] = useState(false)
-
-  // const { pokemonList: allPokemon, error, loading } = usePokemonList();
-
-  // useEffect(() => {
-  //   if (searchValue && allPokemon) {
-  //     const results = allPokemon.filter((p) =>
-  //       p.name.toLowerCase().includes(searchValue.toLowerCase())
-  //     );
-  //     setFilteredPokemon(results);
-  //     setCollapsible(true);
-  //   } else {
-  //     setFilteredPokemon([]);
-  //     setCollapsible(false);
-  //   }
-  // }, [searchValue, allPokemon]);
-
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (filteredPokemon.length > 0) {
-  //     console.log("Searching for:", filteredPokemon[0].name);
-  //     alert(`You searched for ${filteredPokemon[0].name}`);
-  //   }
-  // };
 
   return (
     <header className="flex flex-row gap-4 justify-between bg-white p-4 fixed w-full top-0 left-0 z-0">

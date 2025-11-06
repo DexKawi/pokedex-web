@@ -1,4 +1,3 @@
-import { Search } from "lucide-react";
 import Form from "next/form";
 
 export function SearchBar({
@@ -26,12 +25,6 @@ export function SearchBar({
           onChange={(e) => setSearchValue(e.target.value)}
           disabled={loading}
         />
-        {/* <button
-          type="submit"
-          className="flex flex-row bg-[#222222] text-white p-2 gap-2 rounded-sm items-center"
-        >
-          <Search size={20} /> Search
-        </button> */}
       </Form>
 
       {error && <p className="text-red-500 mt-2">Error: {error}</p>}
