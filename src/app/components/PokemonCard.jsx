@@ -7,6 +7,7 @@ import { Badge } from "./ui/Badge";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 
 function PokemonCard() {
+
   const { pokemon, loading, error } = usePokemonDetails();
 
   if (loading) return <div className="p-4 bg-gray-200 rounded-lg">Loading card...</div>;
@@ -43,7 +44,7 @@ function PokemonCard() {
   );
 }
 
-export default function PokemonGrids() {
+export default function PokemonGrids(filteredCard) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       {Array.from({ length: 3 }).map((_, index) => (
