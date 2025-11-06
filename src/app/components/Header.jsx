@@ -11,7 +11,7 @@ const links = [
   { title: "Battle Simulator", url: "/battle-sim" },
 ];
 
-export function Header(
+export function Header({
   searchValue, 
   setSearchValue, 
   filteredPokemon, 
@@ -19,7 +19,8 @@ export function Header(
   loading, 
   error, 
   collapsible, 
-  setCollapsible) {
+  setCollapsible,
+  setSelectedPokemon}) {
   // const [searchValue, setSearchValue] = useState("");
   // const [filteredPokemon, setFilteredPokemon] = useState([]);
   // const [collapsible, setCollapsible] = useState(false)
@@ -73,7 +74,8 @@ export function Header(
             loading={loading}
             error={error}
             collapsible={collapsible}               
-            setCollapsible={setCollapsible}         
+            setCollapsible={setCollapsible}
+            setSelectedPokemon={setSelectedPokemon}         
         />
       </div>
     </header>

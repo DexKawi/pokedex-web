@@ -8,7 +8,8 @@ import { usePokemonList } from '../hooks/usePokemonList';
 export default function Page(){
     const [searchValue, setSearchValue] = useState("");
     const [filteredPokemon, setFilteredPokemon] = useState([]);
-    const [collapsible, setCollapsible] = useState(false)
+    const [collapsible, setCollapsible] = useState(false);
+    const [selectedPokemon, setSelectedPokemon] = useState("");
 
     const { pokemonList: allPokemon, error, loading } = usePokemonList();
 
@@ -42,9 +43,10 @@ export default function Page(){
                 handleSearchSubmit={handleSearchSubmit}
                 collapsible={collapsible}
                 setCollapsible={setCollapsible}
+                setSelectedPokemon={setSelectedPokemon}
                 loading={loading}
                 error={error}/>
-            <PokemonGrids filteredCard={searchValue}/>
+            <PokemonGrids filteredCard={selectedPokemon}/>
         </div>
     )
 }

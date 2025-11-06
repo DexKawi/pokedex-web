@@ -8,6 +8,7 @@ export function SearchBar({
   handleSearchSubmit,
   collapsible,
   setCollapsible,
+  setSelectedPokemon,
   loading,
   error
 }) {
@@ -43,6 +44,7 @@ export function SearchBar({
               className="p-2 hover:bg-gray-100 dark:hover:bg-gray-600 cursor-pointer"
               onClick={() => {
                 setSearchValue(p.name);
+                setSelectedPokemon(p.name); 
                 setCollapsible(false);
               }}
             >
