@@ -7,10 +7,7 @@ const MAX_GENERATED_NUMBER = 1010;
 export async function GET(){
   try {
     if (!POKE_API){
-      return NextResponse.json({
-        message: "Environment variables unavailable or set incorrectly"}, {
-        status: 500
-      });  
+      return NextResponse.json({message: "Environment variables unavailable or set incorrectly"}, {status: 500});  
     }
     
     const randomID = Math.floor(Math.random() * MAX_GENERATED_NUMBER) + 1;
@@ -22,11 +19,10 @@ export async function GET(){
     });
 
     if(!response.ok){
-      return NextResponse.json(
-        {message: "No response from the server."}, 
-        {status: 502});
+      return NextResponse.json({message: "No response from the server."}, {status: 502});
     }
     
+  
     const result = await response.json();
     const displayedData = {
       id: result?.id || null,
