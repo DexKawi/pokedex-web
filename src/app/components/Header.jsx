@@ -5,7 +5,7 @@ import { SearchBar } from "./ui/SearchBar";
 import Link from "next/link";
 
 const links = [
-  { title: "Pokemons", url: "/characters" },
+  { title: "Deck Builder", url: "/deck-builer" },
   { title: "Battle Simulator", url: "/battle-sim" },
 ];
 
