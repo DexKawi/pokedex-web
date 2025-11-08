@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect} from 'react'
-import { Header } from '../components/Header'
-import PokemonGrids from '../components/PokemonCard'
-import { usePokemonList } from '../hooks/usePokemonList';
+import { Header } from './components/Header'
+import PokemonGrids from './components/PokemonCard'
+import { usePokemonList } from './hooks/usePokemonList';
 
 export default function Page(){
     const [searchValue, setSearchValue] = useState("");
