@@ -5,7 +5,7 @@ import { SearchBar } from "./ui/SearchBar";
 import Link from "next/link";
 
 const links = [
-  { title: "Deck Builder", url: "/deck-builer" },
+  { title: "Deck Builder", url: "/deck-builder" },
   { title: "Battle Simulator", url: "/battle-sim" },
 ];
 

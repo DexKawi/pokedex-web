@@ -72,7 +72,6 @@ export default function PokemonGrids({ filteredCard }) {
     </div>
   ) : (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {/* This will now correctly render multiple cards, each fetching its own random pokemon */}
       {Array.from({ length: 3 }).map((_, index) => (
         <PokemonCard key={index} />
       ))}

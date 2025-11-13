@@ -23,6 +23,7 @@ export default function Page(){
         } else {
         setFilteredPokemon([]);
         setCollapsible(false);
+        setSelectedPokemon("");
         }
     }, [searchValue, allPokemon]);
 
