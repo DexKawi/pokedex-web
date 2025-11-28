@@ -46,7 +46,9 @@ export default function Page(){
                 setSelectedPokemon={setSelectedPokemon}
                 loading={loading}
                 error={error}/>
-            <PokemonGrids filteredCard={selectedPokemon}/>
+            <div className="pt-14">
+              <PokemonGrids filteredCard={selectedPokemon}/>
+            </div>
         </div>
     )
 }

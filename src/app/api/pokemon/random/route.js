@@ -27,23 +27,27 @@ export async function GET(){
     const displayedData = {
       id: result?.id || null,
       name: capitalizeWords(result?.name) || "Unknown",
+      generation: result?.past_abilities.map(g => g.generation.name) || [],
       height: result?.height || 0,
       species: result?.species?.name || result?.species || "Unknown",
       sprites: {
         front_default: result?.sprites.front_default || null,
         back_default: result?.sprites.back_default || null
       },
-      types: result?.types?.map(t => t.type.name) || [],
-      stats: result?.stats || []
+      types: result?.types?.map(type => type.type.name) || [],
+      stats: result?.stats || [],
     };
 
     return NextResponse.json(displayedData);
     } catch(error) {
       if(error.name === "TimeoutError"){
-        return NextResponse.json({
-          message: "PokeAPI is taking too long to respond!"
-        }, {status: 408})
-      }
-    return NextResponse.json({message: "Fetching Pokemons failed!"}, {status: 502})
+        return NextResponse.json(
+          {message: "PokeAPI is taking too long to respond!"}, 
+          {status: 408}
+        )}
+    return NextResponse.json(
+      {message: "Fetching Pokemons failed!"}, 
+      {status: 502}
+    )
   };
 };
