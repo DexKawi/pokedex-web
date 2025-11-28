@@ -13,12 +13,12 @@ function PokemonCard({ pokemonName }) {
     async function fetchPokemon() {
       setLoading(true);
       setError(null);
-      
+
       try {
-        const endpoint = pokemonName 
+        const endpoint = pokemonName
           ? `/api/pokemon/${pokemonName.toLowerCase()}`
           : `/api/pokemon/random`;
-        
+
         const response = await fetch(endpoint);
         if (!response.ok) throw new Error("Failed to fetch Pokémon");
         const data = await response.json();
@@ -29,14 +29,14 @@ function PokemonCard({ pokemonName }) {
         setLoading(false);
       }
     }
-    
+
     fetchPokemon();
   }, [pokemonName]);
 
   if (loading) return <div className="p-4 bg-gray-200 rounded-lg">Loading card...</div>;
   if (error) return <div className="p-4 bg-red-100 text-red-700 rounded-lg">Error: {error}</div>;
   if (!pokemon) return <div className="p-4 bg-gray-200 rounded-lg">No Pokémon data found.</div>;
-  
+
   return (
     <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px]">
       <div className="bg-[#ffffff] p-4 rounded-[10px]">
@@ -44,6 +44,7 @@ function PokemonCard({ pokemonName }) {
           <h1 className="text-[36px]">{pokemon.name}</h1>
           <h1 className="text-[16px]">#{pokemon.id}</h1>
         </div>
+        <p className="text-[16px]">{pokemon.generation}</p>
         <div className="flex flex-row justify-center">
           <img className="w-[30%]" src={pokemon.sprites?.front_default} alt={pokemon.name} />
         </div>
@@ -67,13 +68,12 @@ function PokemonCard({ pokemonName }) {
 
 export default function PokemonGrids({ filteredCard }) {
   return filteredCard ? (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"> 
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
       <PokemonCard pokemonName={filteredCard} />
     </div>
   ) : (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {/* This will now correctly render multiple cards, each fetching its own random pokemon */}
-      {Array.from({ length: 3 }).map((_, index) => (
+      {Array.from({ length: 6 }).map((_, index) => (
         <PokemonCard key={index} />
       ))}
     </div>
