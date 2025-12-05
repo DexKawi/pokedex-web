@@ -1,36 +1,37 @@
 "use client";
 
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { Header } from './components/Header'
 import PokemonGrids from './components/PokemonCard'
 import { usePokemonList } from './hooks/usePokemonList';
 
-export default function Page(){
+export default function Page() {
     const [searchValue, setSearchValue] = useState("");
     const [filteredPokemon, setFilteredPokemon] = useState([]);
     const [collapsible, setCollapsible] = useState(false);
     const [selectedPokemon, setSelectedPokemon] = useState("");
+    const [dropdownValue, setDropdownValue] = useState("Generation")
 
     const { pokemonList: allPokemon, error, loading } = usePokemonList();
 
     useEffect(() => {
         if (searchValue && allPokemon) {
-        const results = allPokemon.filter((p) =>
-            p.name.toLowerCase().includes(searchValue.toLowerCase())
-        );
-        setFilteredPokemon(results);
-        setCollapsible(true);
+            const results = allPokemon.filter((p) =>
+                p.name.toLowerCase().includes(searchValue.toLowerCase())
+            );
+            setFilteredPokemon(results);
+            setCollapsible(true);
         } else {
-        setFilteredPokemon([]);
-        setCollapsible(false);
-        setSelectedPokemon("");
+            setFilteredPokemon([]);
+            setCollapsible(false);
+            setSelectedPokemon("");
         }
     }, [searchValue, allPokemon]);
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         if (filteredPokemon.length > 0) {
-        alert(`You searched for ${filteredPokemon[0].name}`);
+            alert(`You searched for ${filteredPokemon[0].name}`);
         }
     };
 
@@ -42,12 +43,14 @@ export default function Page(){
                 filteredPokemon={filteredPokemon}
                 handleSearchSubmit={handleSearchSubmit}
                 collapsible={collapsible}
+                dropdownValue={dropdownValue}
                 setCollapsible={setCollapsible}
                 setSelectedPokemon={setSelectedPokemon}
+                setDropdownValue={setDropdownValue}
                 loading={loading}
-                error={error}/>
+                error={error} />
             <div className="pt-14">
-              <PokemonGrids filteredCard={selectedPokemon}/>
+                <PokemonGrids filteredCard={selectedPokemon} />
             </div>
         </div>
     )

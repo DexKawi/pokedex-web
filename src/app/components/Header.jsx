@@ -15,11 +15,13 @@ export function Header({
   setSearchValue,
   filteredPokemon,
   handleSearchSubmit,
+  dropdownValue,
   loading,
   error,
   collapsible,
   setCollapsible,
-  setSelectedPokemon }) {
+  setSelectedPokemon,
+  setDropdownValue }) {
 
   return (
     <header className="bg-white w-full fixed top-0 left-0 z-[999]">
@@ -55,7 +57,10 @@ export function Header({
           </div>
         </div>
         <br></br>
-        <Dropdown />
+        <Dropdown
+          dropdownValue={dropdownValue}
+          setDropdownValue={setDropdownValue}
+        />
       </div>
     </header>
   );
