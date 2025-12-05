@@ -38,8 +38,8 @@ function PokemonCard({ pokemonName }) {
   if (!pokemon) return <div className="p-4 bg-gray-200 rounded-lg">No Pokémon data found.</div>;
 
   return (
-    <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px]">
-      <div className="bg-[#ffffff] p-4 rounded-[10px]">
+    <div className="outline-1 outline-[#ffffff] p-1 rounded-[15px] h-full">
+      <div className="bg-[#ffffff] p-4 rounded-[10px] h-full flex flex-col">
         <div className="flex flex-row justify-between items-center">
           <h1 className="text-[36px]">{pokemon.name}</h1>
           <h1 className="text-[16px]">#{pokemon.id}</h1>
@@ -53,7 +53,7 @@ function PokemonCard({ pokemonName }) {
             <Badge key={index} badge={type} />
           ))}
         </div>
-        <div className="grid grid-cols-3 gap-2 place-content-center">
+        <div className="grid grid-cols-3 gap-2 place-content-center mt-auto">
           {pokemon.stats.map((stat, index) => (
             <div key={index}>
               <p className="text-[8px]">{uppercaseWords(stat.stat.name)}</p>
