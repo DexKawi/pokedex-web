@@ -13,7 +13,6 @@ export function capitalizeWords(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-
 export function specifiedData(result) {
   return {
     id: result?.id || null,
