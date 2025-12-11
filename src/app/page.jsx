@@ -2,17 +2,14 @@
 
 import React, { useState, useEffect } from 'react'
 import { Header } from './components/Header'
-import PokemonGrids from './components/PokemonCard'
-import { usePokemonList } from './hooks/usePokemonList';
 
 export default function Page() {
+
     const [searchValue, setSearchValue] = useState("");
     const [filteredPokemon, setFilteredPokemon] = useState([]);
     const [collapsible, setCollapsible] = useState(false);
-    const [selectedPokemon, setSelectedPokemon] = useState("");
     const [dropdownValue, setDropdownValue] = useState("Generation")
 
-    const { pokemonList: allPokemon, error, loading } = usePokemonList();
 
     useEffect(() => {
         if (searchValue && allPokemon) {
@@ -24,16 +21,9 @@ export default function Page() {
         } else {
             setFilteredPokemon([]);
             setCollapsible(false);
-            setSelectedPokemon("");
         }
     }, [searchValue, allPokemon]);
 
-    const handleSearchSubmit = (e) => {
-        e.preventDefault();
-        if (filteredPokemon.length > 0) {
-            alert(`You searched for ${filteredPokemon[0].name}`);
-        }
-    };
 
     return (
         <div className="pt-12">
@@ -45,13 +35,9 @@ export default function Page() {
                 collapsible={collapsible}
                 dropdownValue={dropdownValue}
                 setCollapsible={setCollapsible}
-                setSelectedPokemon={setSelectedPokemon}
                 setDropdownValue={setDropdownValue}
                 loading={loading}
                 error={error} />
-            <div className="pt-14">
-                <PokemonGrids filteredCard={selectedPokemon} />
-            </div>
         </div>
     )
 }

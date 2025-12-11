@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { ChevronDown, ChevronUp } from "lucide-react"
-import { useGenerations } from "@/app/hooks/usePokemonGen"
 
 export function Dropdown({ dropdownValue, setDropdownValue }) {
     const [collapsed, setCollapsed] = useState(false)
